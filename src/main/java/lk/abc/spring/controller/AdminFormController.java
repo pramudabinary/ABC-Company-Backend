@@ -10,12 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 /**
  * @author Pramuda Liyanage <pramudatharika@gmail.com>
  * @since 10/20/21
  */
-
 
 @RestController
 @RequestMapping("api/v1/admin")

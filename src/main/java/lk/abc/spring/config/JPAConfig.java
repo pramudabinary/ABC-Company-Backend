@@ -34,7 +34,8 @@ public class JPAConfig {
     Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,JpaVendorAdapter vendorAdapter){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+                                                                       JpaVendorAdapter vendorAdapter){
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setJpaVendorAdapter(vendorAdapter);
@@ -48,14 +49,15 @@ public class JPAConfig {
         return (DataSource) jndiTemplate.lookup("java:comp/env/jdbc/pool");
     }
 
+
     @Bean
     public JpaVendorAdapter vendorAdapter(){
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setDatabasePlatform(env.getRequiredProperty("db.dialect"));
-        vendorAdapter.setDatabase(Database.MYSQL);
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(true);
-        return vendorAdapter;
+        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
+        va.setDatabasePlatform(env.getRequiredProperty("db.dialect"));
+        va.setDatabase(Database.MYSQL);
+        va.setGenerateDdl(true);
+        va.setShowSql(true);
+        return va;
     }
 
     @Bean
