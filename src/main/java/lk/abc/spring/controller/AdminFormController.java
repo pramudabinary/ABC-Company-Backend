@@ -52,14 +52,13 @@ public class AdminFormController {
         return new ResponseEntity<>(new StandardResponse("200","Admin Updated",dto),HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,
-            params ={"id"} )
+    @DeleteMapping(params ={"id"},produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<StandardResponse> deleteAdmin(@RequestParam String id ){
         adminService.deleteAdmin(id);
         return new ResponseEntity<>(new StandardResponse("200","Product Deleted!!",null),HttpStatus.OK);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "/crud/all")
     public ResponseEntity<StandardResponse> getAllAdmins(){
         ArrayList<AdminDTO> allAdmins = adminService.getAllAdmins();
         return new ResponseEntity<>(new StandardResponse("200","Done",allAdmins),HttpStatus.OK);
