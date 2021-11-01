@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public class ProductServiceImpl implements ProductService {
     private ModelMapper mapper;
 
 
-
     @Override
     public void addProduct(ProductDTO dto) {
         if (productRepo.existsById(dto.getId())){
@@ -41,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
         }
         productRepo.save(mapper.map(dto, Product.class));
     }
+
 
     @Override
     public void updateProduct(ProductDTO dto) {
@@ -62,4 +63,5 @@ public class ProductServiceImpl implements ProductService {
         List<Product> all = productRepo.findAll();
         return mapper.map(all,new TypeToken<ArrayList<ProductDTO>>(){}.getType());
     }
+
 }

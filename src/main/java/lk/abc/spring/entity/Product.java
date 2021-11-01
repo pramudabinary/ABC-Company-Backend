@@ -3,9 +3,12 @@ package lk.abc.spring.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  * @author Pramuda Liyanage <pramudatharika@gmail.com>
@@ -22,4 +25,7 @@ public class Product {
     private String name;
     private String qty;
     private String price;
+//    @Lob
+//    @Column(columnDefinition = "MEDIUMBLOB")
+//    private MultipartFile image;
 }

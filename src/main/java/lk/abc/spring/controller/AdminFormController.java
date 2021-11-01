@@ -38,8 +38,12 @@ public class AdminFormController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,
             path ="/crud/add" )
     public ResponseEntity<StandardResponse> saveAdmin(@RequestBody AdminDTO dto ){
+        if (dto.getId().trim().length() <= 0) {
+            throw new NotFoundException("No ID Provided!!");
+        }
         adminService.addAdmin(dto);
-        return new ResponseEntity<>(new StandardResponse("201","Admin Created",dto),HttpStatus.CREATED);
+        return new ResponseEntity<>(new StandardResponse("201",
+                "Admin Created",dto),HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,
